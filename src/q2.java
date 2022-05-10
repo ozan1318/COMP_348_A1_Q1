@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class q2 {
     public static void main(String[] args) {
@@ -18,17 +16,42 @@ public class q2 {
         while (scan.hasNextLine()){
             shapeInfo.add(scan.nextLine());
         }
-        Shape shapeList[] = new Shape[shapeInfo.size()];
+        PrintableObject shapeArray[] = new PrintableObject[shapeInfo.size()];
         for(int i = 0; i < shapeInfo.size(); i++){
             if (shapeInfo.get(i).charAt(0) == 'C'){
-                shapeList[i] = Circle.parse(shapeInfo.get(i));
+                shapeArray[i] = Circle.parse(shapeInfo.get(i));
+                System.out.println("c");
             }
             else if (shapeInfo.get(i).charAt(0) == 'R'){
-                shapeList[i] = Rectangle.parse(shapeInfo.get(i));
+                shapeArray[i] = Rectangle.parse(shapeInfo.get(i));
+                System.out.println("r");
             }
             else {
                 System.out.println("UNKNOWN SHAPE DETECTED");
             }
         }
+
+        scan = new Scanner(System.in);
+        System.out.println("Choose one of the options.\n1. Sort ascending by area\n2. Sort descending by area\n3. Sort ascending by name\n4. Sort descending by name");
+        int s = scan.nextInt();
+        switch (s){
+            case 1:{
+                Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea));
+                break;
+            }
+            case 2:{
+                Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea).reversed());
+                break;
+            }
+            case 3:{
+                Arrays.sort(shapeArray, Comparator.comparing(Shape::getName));
+                break;
+            }
+            case 4:{
+                Arrays.sort(shapeArray, Comparator.comparing(Shape::getName).reversed());
+                break;
+            }
+        }
+        Printable.print(shapeArray);
     }
 }

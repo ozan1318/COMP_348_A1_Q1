@@ -1,4 +1,4 @@
-public class PrintableObject implements Shape, Printable{
+public abstract class PrintableObject implements Shape, Printable{
 
     String name;
 
@@ -19,7 +19,7 @@ public class PrintableObject implements Shape, Printable{
 
     @Override
     public void print() {
-
+        System.out.println(this.toString());
     }
 
     @Override
