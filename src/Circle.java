@@ -58,7 +58,7 @@ public class Circle extends PrintableObject implements NamedObject {
         return this.getName() + ',' + radius;
     }
 
-    public Circle parse(String in) {
+    public static Circle parse(String in) {
         String type = "", temp = "";
         double radius;
         int i = 0;

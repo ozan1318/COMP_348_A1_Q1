@@ -68,7 +68,7 @@ public class Rectangle extends PrintableObject implements NamedObject {
         return this.getName() + ',' + side1 + ',' + side2;
     }
 
-    public Rectangle parse(String in){
+    public static Rectangle parse(String in){
         String type = "", temp = "";
         double side1, side2;
         int i = 0;
