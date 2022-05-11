@@ -16,7 +16,7 @@ public class q2 {
         while (scan.hasNextLine()){
             shapeInfo.add(scan.nextLine());
         }
-        PrintableObject shapeArray[] = new PrintableObject[shapeInfo.size()];
+        PrintableObject[] shapeArray = new PrintableObject[shapeInfo.size()];
         for(int i = 0; i < shapeInfo.size(); i++){
             if (shapeInfo.get(i).charAt(0) == 'C'){
                 shapeArray[i] = Circle.parse(shapeInfo.get(i));
@@ -32,26 +32,32 @@ public class q2 {
         }
 
         scan = new Scanner(System.in);
-        System.out.println("Choose one of the options.\n1. Sort ascending by area\n2. Sort descending by area\n3. Sort ascending by name\n4. Sort descending by name");
-        int s = scan.nextInt();
-        switch (s){
-            case 1:{
-                Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea));
-                break;
+        int s = 0;
+        while (s != 6){
+            System.out.println("Choose one of the options.\n1. Sort ascending by area\n2. Sort descending by area\n3. Sort ascending by name\n4. Sort descending by name\n5. Quit");
+            s = scan.nextInt();
+            switch (s){
+                case 1:{
+                    Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea));
+                    break;
+                }
+                case 2:{
+                    Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea).reversed());
+                    break;
+                }
+                case 3:{
+                    Arrays.sort(shapeArray, Comparator.comparing(Shape::getName));
+                    break;
+                }
+                case 4:{
+                    Arrays.sort(shapeArray, Comparator.comparing(Shape::getName).reversed());
+                    break;
+                }
+                case 5:{
+                    System.exit(0);
+                }
             }
-            case 2:{
-                Arrays.sort(shapeArray, Comparator.comparing(Shape::getArea).reversed());
-                break;
-            }
-            case 3:{
-                Arrays.sort(shapeArray, Comparator.comparing(Shape::getName));
-                break;
-            }
-            case 4:{
-                Arrays.sort(shapeArray, Comparator.comparing(Shape::getName).reversed());
-                break;
-            }
+            Printable.print(shapeArray);
         }
-        Printable.print(shapeArray);
     }
 }

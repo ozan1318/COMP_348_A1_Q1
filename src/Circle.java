@@ -12,6 +12,7 @@ public class Circle extends PrintableObject implements NamedObject {
     Circle(double rad) {
         radius = rad;
         this.setAreaAndPerimeter();
+        name = "NO_NAME_SET_FOR_CIRCLE";
     }
 
     Circle(double rad, String name) {
@@ -64,10 +65,12 @@ public class Circle extends PrintableObject implements NamedObject {
         int i = 0;
         while (in.charAt(i) != ','){
             type += in.charAt(i);
+            i++;
         }
         i++;
-        while (in.charAt(i) != ','){
+        while (i < in.length()){
             temp += in.charAt(i);
+            i++;
         }
         radius = Double.parseDouble(temp);
 

@@ -10,7 +10,7 @@ public class Rectangle extends PrintableObject implements NamedObject {
         side1 = shortSide;
         side2 = longSide;
         this.setAreaAndPerimeter();
-        name = "";
+        name = "NO_NAME_SET_FOR_RECTANGLE";
     }
 
     Rectangle(double shortSide, double longSide, String nameIn){
@@ -74,19 +74,21 @@ public class Rectangle extends PrintableObject implements NamedObject {
         int i = 0;
         while (in.charAt(i) != ','){
             type += in.charAt(i);
+            i++;
         }
         i++;
         while (in.charAt(i) != ','){
             temp += in.charAt(i);
+            i++;
         }
         side1 = Double.parseDouble(temp);
         i++;
         temp = "";
         while (i < in.length()){
             temp += in.charAt(i);
+            i++;
         }
         side2 = Double.parseDouble(temp);
-        i++;
         temp = "";
         return new Rectangle(side1, side2);
     }
